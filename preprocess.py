@@ -6,7 +6,7 @@ def getBool(s):
     s = s.lower()
     return s == 'true' or s == 'yes' or s == 'y' or s == '1'
 
-IHEIGHT, IWIDTH, ICHANNELS = 66, 200, 3
+IHEIGHT, IWIDTH, ICHANNELS = 160, 320, 3
 ISHAPE = (IHEIGHT, IWIDTH, ICHANNELS)
 
 def loadImage(dataDir, imageFile):
@@ -18,15 +18,14 @@ def rgb2yuv(image):
 def crop(image):
     return image[60:-25, :, :]
 
-
 def resize(image):
     return cv2.resize(image, (IWIDTH, IHEIGHT), cv2.INTER_AREA)
 
 
 def preprocess(image):
     image = crop(image)
-    image = rgb2yuv(image)
     image = resize(image)
+    image = rgb2yuv(image)
     return image
 
 def randomFlip(image, steeringAngle):
