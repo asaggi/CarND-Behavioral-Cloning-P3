@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>README</title>
+
+
+
+</head>
+
+<body>
+
+<h2 id="toc_0">Behavioral Cloning</h2>
+
+<p>The goals / steps of this project are the following:<br>
+* Use the simulator to collect data of good driving behavior.<br>
+* Build, a convolution neural network in Keras that predicts steering angles from images.<br>
+* Train and validate the model with a training and validation set.<br>
+* Test that the model successfully drives around track one without leaving the road.<br>
+* Summarize the results with a written report.  </p>
+
+<p>In this project, I used the default images provided for training as my data set.
+I used the NVIDIA model, as it&#39;s supposed to work well in this situation.</p>
+
+<h2 id="toc_1">Appropriate training data</h2>
+
+<p>Training data was chosen to keep the vehicle driving on the road. I used a combination of center lane driving, recovering from the left and right sides of the road. </p>
+
+<p>For details about how I created the training data, see the next section. </p>
+
+<h2 id="toc_2">Data Preprocessing</h2>
+
+<ul>
+<li>Normalization of Images (To make gradients work better)</li>
+<li>The images are cropped so that the model won’t be trained with the sky and the car front parts</li>
+</ul>
+
+<h2 id="toc_3">Model Training</h2>
+
+<p>I used the following augumentation technique to generate unlimited number of images:</p>
+
+<ul>
+<li>Left image, steering angle is adjusted by +0.2</li>
+<li>Right image, steering angle is adjusted by -0.2</li>
+<li>Randomly flip image left/right</li>
+<li>Randomly choose left, right or center images.</li>
+<li>Randomly altering image brightness (lighter or darker)</li>
+</ul>
+
+<h2 id="toc_4">Training, Validation and Test</h2>
+
+<p>I splitted the images into train and validation set in order to measure the performance at every epoch. Testing was done using the simulator.</p>
+
+<ul>
+<li>I chose MSE for the loss function to measure how close the model predicts to the given steering angle for each image.</li>
+<li>I used Adam optimizer for optimization with learning rate of 1.0e-4 which is smaller than the default of 1.0e-3. </li>
+<li>I used ModelCheckpoint from Keras to save the model.</li>
+</ul>
+
+<h2 id="toc_5">Submission</h2>
+
+<p><strong>My project includes the following files:</strong>.<br>
+- model.py containing the script to create and train the model.<br>
+- drive.py for driving the car in autonomous mode.<br>
+- model.h5 containing a trained convolution neural network<br>
+- writeup_report.md summarizing the results.<br>
+- preprocess.py, helper functions for model.py</p>
+
+<h2 id="toc_6">Architecture</h2>
+
+<h3 id="toc_7">An appropriate model architecture has been employed</h3>
+
+<p>My model consists of a convolution neural network with 3x3 filter sizes and depths between 32 and 128 (model.py lines 18-24) </p>
+
+<p>The model includes RELU layers to introduce nonlinearity (code line 20). </p>
+
+<h3 id="toc_8">Attempts to reduce overfitting in the model</h3>
+
+<p>The model contains dropout layers in order to reduce overfitting (model.py lines 22). </p>
+
+<p>The model was trained and validated on different data sets to ensure that the model was not overfitting (code line 32-37). The model was tested by running it through the simulator and ensuring that the vehicle could stay on the track.</p>
+
+<h3 id="toc_9">Model parameter tuning</h3>
+
+<p>The model used an adam optimizer, so the learning rate was not tuned manually (model.py line 39).</p>
+
+<h2 id="toc_10">Final Model Architecture</h2>
+
+<p>The design of the network is based on the NVIDIA model.</p>
+
+<p>I&#39;ve added the following adjustments to the model.</p>
+
+<ul>
+<li>Used Lambda layer to normalized input images to avoid saturation and make gradients work better.</li>
+<li>Added an additional dropout layer to avoid overfitting after the convolution layers.</li>
+<li>Include  ELU for activation function for every layer except for the output layer to introduce non-linearity.<br></li>
+</ul>
+
+<h2 id="toc_11">The model looks like as follows: </h2>
+
+<ul>
+<li> Image normalization.<br></li>
+<li> Convolution: 5x5, filter: 24, strides: 2x2, activation: ELU.<br></li>
+<li> Convolution: 5x5, filter: 36, strides: 2x2, activation: ELU.<br></li>
+<li> Convolution: 5x5, filter: 48, strides: 2x2, activation: ELU.<br></li>
+<li> Convolution: 3x3, filter: 64, strides: 1x1, activation: ELU<br></li>
+<li> Convolution: 3x3, filter: 64, strides: 1x1, activation: ELU<br></li>
+<li> Drop out (0.5)</li>
+<li> Fully connected: neurons: 100, activation: ELU.<br></li>
+<li> Fully connected: neurons: 50, activation: ELU.<br></li>
+<li> Fully connected: neurons: 10, activation: ELU.<br></li>
+<li> Fully connected: neurons: 1 (output).<br></li>
+</ul>
+
+<h2 id="toc_12">OUTPUT</h2>
+
+<p>The model can drive the course without bumping into the side ways.</p>
+
+
+
+
+</body>
+
+</html>
