@@ -1,6 +1,7 @@
 import matplotlib.image as mpimg
 import cv2, os
 import numpy as np
+import scipy.misc
 
 '''
 Return 0 or 1 based on input:
@@ -123,5 +124,6 @@ def augument(dataDir, center, left, right, steeringAngle, rangeX=100, rangeY=10)
     image, steeringAngle = randomFlip(image, steeringAngle)
     image, steeringAngle = randomTranslate(image, steeringAngle, rangeX, rangeY)
     image = randomBrightness(image)
+    i = scipy.misc.imsave('outfile.jpg', image)
     return image, steeringAngle
 

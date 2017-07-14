@@ -1,5 +1,14 @@
 ## Behavioral Cloning
 
+[//]: # (Image References)
+
+[image1]: ./images/augment.jpg "Augmentation"
+[image2]: ./images/crop.jpg "Cropping"
+[image3]: ./images/preprocess.jpg "Preprocessing"
+[image4]: ./images/randomBrightness.jpg "Random Brightness"
+[image5]: ./images/randomFlip.jpg "Random Flip"
+[image6]: ./images/randomTranslate.jpg "Random Translate"
+[image7]: ./examples/placeholder_small.png "Flipped Image"
 
 The goals / steps of this project are the following:   
 * Use the simulator to collect data of good driving behavior.  
@@ -7,17 +16,6 @@ The goals / steps of this project are the following:
 * Train and validate the model with a training and validation set.  
 * Test that the model successfully drives around track one without leaving the road.  
 * Summarize the results with a written report.  
-
-
-[//]: # (Image References)
-
-[image1]: ./examples/placeholder.png "Model Visualization"
-[image2]: ./examples/placeholder.png "Grayscaling"
-[image3]: ./examples/placeholder_small.png "Recovery Image"
-[image4]: ./examples/placeholder_small.png "Recovery Image"
-[image5]: ./examples/placeholder_small.png "Recovery Image"
-[image6]: ./examples/placeholder_small.png "Normal Image"
-[image7]: ./examples/placeholder_small.png "Flipped Image"
 
 In this project, I used the default images provided for training as my data set.
 I used the NVIDIA model, as it's supposed to work well in this situation.
@@ -31,18 +29,23 @@ For details about how I created the training data, see the next section.
 ## Data Preprocessing
 
 * Normalization of Images (To make gradients work better)
-* The images are cropped so that the model won’t be trained with the sky and the car front parts
+* The images are cropped so that the model won’t be trained with the sky and the car front parts, here is an example of a cropped image (60:25):
 
+	![alt text][image2]
 
 ## Model Training
 I used the following augumentation technique to generate unlimited number of images:
 
 * Left image, steering angle is adjusted by +0.2
 * Right image, steering angle is adjusted by -0.2
-* Randomly flip image left/right
-* Randomly choose left, right or center images.
-* Randomly altering image brightness (lighter or darker)
+* Randomly flip image left/right, here is an example of a flipped image
 
+	![alt text][image2]
+
+* Randomly choose left, right or center images.
+* Randomly altering image brightness (lighter or darker), here is an example of a an image with reduced brightness:    
+
+	![alt text][image4]
 
 ## Training, Validation and Test
 I splitted the images into train and validation set in order to measure the performance at every epoch. Testing was done using the simulator.
@@ -105,3 +108,7 @@ The model looks like as follows:
 ## OUTPUT
 
 The model can drive the course without bumping into the side ways.
+
+
+## References
+**NVIDIA**:   [Self Driving Car] (http://images.nvidia.com/content/tegra/automotive/images/2016/solutions/pdf/end-to-end-dl-using-px.pdf)
