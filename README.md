@@ -40,7 +40,7 @@ I used the following augumentation technique to generate unlimited number of ima
 * Right image, steering angle is adjusted by -0.2
 * Randomly flip image left/right, here is an example of a flipped image
 
-	![alt text][image2]
+	![alt text][image5]
 
 * Randomly choose left, right or center images.
 * Randomly altering image brightness (lighter or darker), here is an example of a an image with reduced brightness:    
