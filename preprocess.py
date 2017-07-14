@@ -124,6 +124,5 @@ def augument(dataDir, center, left, right, steeringAngle, rangeX=100, rangeY=10)
     image, steeringAngle = randomFlip(image, steeringAngle)
     image, steeringAngle = randomTranslate(image, steeringAngle, rangeX, rangeY)
     image = randomBrightness(image)
-    i = scipy.misc.imsave('outfile.jpg', image)
     return image, steeringAngle
 
