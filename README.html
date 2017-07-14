@@ -379,6 +379,10 @@ I used the NVIDIA model, as it&#39;s supposed to work well in this situation.</p
 <li>I chose MSE for the loss function to measure how close the model predicts to the given steering angle for each image.</li>
 <li>I used Adam optimizer for optimization with learning rate of 1.0e-4 which is smaller than the default of 1.0e-3. </li>
 <li>I used ModelCheckpoint from Keras to save the model.</li>
+<li>I chose an epoch size of 10, as the loss function narrowed down here</li>
+<li>A batch size of 40 was chosen keeping in mind memory limitations of my machine</li>
+<li>Learning rate was kept to be 0.018</li>
+<li>Used <a href="https://keras.io/callbacks/">callbacks</a> to save states of intermediate stages.</li>
 </ul>
 
 <h2 id="toc_5">Submission</h2>

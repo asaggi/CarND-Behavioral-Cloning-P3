@@ -53,6 +53,10 @@ I splitted the images into train and validation set in order to measure the perf
 * I chose MSE for the loss function to measure how close the model predicts to the given steering angle for each image.
 * I used Adam optimizer for optimization with learning rate of 1.0e-4 which is smaller than the default of 1.0e-3. 
 * I used ModelCheckpoint from Keras to save the model.
+* I chose an epoch size of 10, as the loss function narrowed down here
+* A batch size of 40 was chosen keeping in mind memory limitations of my machine
+* Learning rate was kept to be 0.018
+* Used [callbacks] (https://keras.io/callbacks/) to save states of intermediate stages.
 
 ## Submission
 **My project includes the following files:**.   
