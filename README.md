@@ -57,6 +57,12 @@ I splitted the images into train and validation set in order to measure the perf
 * A batch size of 40 was chosen keeping in mind memory limitations of my machine
 * Learning rate was kept to be 0.018
 * Used [callbacks] (https://keras.io/callbacks/) to save states of intermediate stages.
+* Samples Per Epoch    := 20000
+* Batch Size           := 40
+* Test Size            := 0.2
+* Leep Probability     := 0.5
+* Epoch's              := 10
+* Learning Rate        := 0.0001
 
 ## Submission
 **My project includes the following files:**.   
