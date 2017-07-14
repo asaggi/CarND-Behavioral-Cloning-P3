@@ -11,6 +11,10 @@ from sklearn.model_selection import train_test_split
 
 np.random.seed(0)
 
+'''
+Build NVIDIA Model
+Ref: http://images.nvidia.com/content/tegra/automotive/images/2016/solutions/pdf/end-to-end-dl-using-px.pdf
+'''
 def buildModel(args):
     model = Sequential()
     model.add(Lambda(lambda x: x/127.5-1.0, input_shape=ISHAPE))
@@ -29,6 +33,9 @@ def buildModel(args):
 
     return model
 
+'''
+Function to Train Model using MSE, Adam's otimizer and helper functions
+'''
 def trainModel(model, args, Xtrain, Xvalid, ytrain, yvalid):
     checkpoint = ModelCheckpoint('model-{epoch:03d}.h5',
                                  monitor='val_loss',
@@ -49,6 +56,9 @@ def trainModel(model, args, Xtrain, Xvalid, ytrain, yvalid):
 ### MAIN ###
 def main():
     parser = argparse.ArgumentParser(description='Behavioral Cloning Training Program')
+    '''
+    Create Dictionary of parameters
+    '''
     parser.add_argument('-t', help='Test Size Fraction',        dest='testSize',         type=float,     default=0.2)
     parser.add_argument('-l', help='Learning Rate Defined',     dest='learningRate',     type=float,     default=1.0e-4)
     parser.add_argument('-d', help='Data Directory',            dest='dataDir',          type=str,       default='data')
@@ -63,11 +73,22 @@ def main():
     for key, value in vars(args).items():
         print('{:<20} := {}'.format(key, value))
 
+    '''
+    Get Data from CSV files
+    '''
     data = loadData(args)
+    '''
+    Generate Model
+    '''
     model = buildModel(args)
+    '''
+    Train the model
+    '''
     trainModel(model, args, *data)
 
-    
+'''
+Helper function to load data using CSV file
+''' 
 def loadData(args):
     dataDf = pd.read_csv(os.path.join(args.dataDir, 'driving_log.csv'))
 
