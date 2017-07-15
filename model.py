@@ -63,8 +63,8 @@ def main():
     parser.add_argument('-l', help='Learning Rate Defined',     dest='learningRate',     type=float,     default=1.0e-4)
     parser.add_argument('-d', help='Data Directory',            dest='dataDir',          type=str,       default='data')
     parser.add_argument('-o', help='Save best Only',            dest='save_best_only',   type=getBool,   default='true')
-    parser.add_argument('-b', help='Batch Size',                dest='batchSize',        type=int,       default=40)
-    parser.add_argument('-n', help='# Epochs',                  dest='nbEpoch',          type=int,       default=10)
+    parser.add_argument('-b', help='Batch Size',                dest='batchSize',        type=int,       default=80)
+    parser.add_argument('-n', help='# Epochs',                  dest='nbEpoch',          type=int,       default=20)
     parser.add_argument('-s', help='Samples/Epoch',             dest='samplesPerEpoch',  type=int,       default=20000)
     parser.add_argument('-k', help='Drop Out',                  dest='keepProb',         type=float,     default=0.5)
 
